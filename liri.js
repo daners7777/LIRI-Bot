@@ -99,8 +99,7 @@ function getSong(song) {
         song = 'Ace of Base: The Sign';
     }
     spotify.search({ type: 'track', query: song }, function (err, data) {
-        var songInfo = data.tracks.items;
-       
+        
         console.log("Artist(s): " + data.tracks.items[0].artists[0].name);
         console.log("Song Name: " + data.tracks.items[0].name);
         console.log("Preview Link: " + data.tracks.items[0].preview_url);
