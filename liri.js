@@ -66,7 +66,7 @@ function search(command) {
                 doWhatItSays(searchTerm)
             }
         });
-}
+    }
 
 function getMovie(movie) {
     console.log(movie)
