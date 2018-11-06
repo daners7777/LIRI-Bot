@@ -65,7 +65,6 @@ function search(command) {
             if (command === "Do what it says") {
                 doWhatItSays(searchTerm)
             }
-
         });
 }
 
@@ -77,7 +76,7 @@ function getMovie(movie) {
     }
     var queryurl = "http://www.omdbapi.com/?t=" + movie + "&y=&plot=full&tomatoes=true&apikey=trilogy";
     request(queryurl, function (error, response, body) {
-       
+
         if (!error && response.statusCode === 200) {
             //console.log(body)
 
@@ -101,11 +100,12 @@ function getSong(song) {
     }
     spotify.search({ type: 'track', query: song }, function (err, data) {
         var songInfo = data.tracks.items;
-            console.log("Artist(s): " + songInfo[0].artists[0].name);
-            console.log("Song Name: " + songInfo[0].name);
-            console.log("Preview Link: " + songInfo[0].preview_url);
-            console.log("Album: " + songInfo[0].album.name);
-        
+       
+        console.log("Artist(s): " + data.tracks.items[0].artists[0].name);
+        console.log("Song Name: " + data.tracks.items[0].name);
+        console.log("Preview Link: " + data.tracks.items[0].preview_url);
+        console.log("Album: " + data.tracks.items[0].album.name);
+
         if (err) {
             return console.log('Error occurred: ' + err);
         }
@@ -120,9 +120,9 @@ function getConcert(artist) {
     }
     var queryurl = "https://rest.bandsintown.com/artists/" + artist + "/events?app_id=codingbootcamp";
     request(queryurl, function (error, response, body) {
-            console.log("Venue Name: " + JSON.parse(body)[0].venue.name);
-            console.log("Venue Location: " + JSON.parse(body)[0].venue.city);
-            console.log("Event Date: " +  moment(JSON.parse(body)[0]).format("MM/DD/YYYY"));
+        console.log("Venue Name: " + JSON.parse(body)[0].venue.name);
+        console.log("Venue Location: " + JSON.parse(body)[0].venue.city);
+        console.log("Event Date: " + moment(JSON.parse(body)[0]).format("MM/DD/YYYY"));
         if (!error && response.statusCode === 200) {
             //console.log(body)
         }
@@ -130,16 +130,16 @@ function getConcert(artist) {
 }
 
 function doWhatItSays() {
-    fs.readFile("random.txt", "utf8", function(error, data) {
+    fs.readFile("random.txt", "utf8", function (error, data) {
         if (error) {
-          return console.log(error);
+            return console.log(error);
         }
-         //console.log(data);
-         var dataArr = data.split(",");
-         console.log(dataArr);
-         
-         prompt();
-      });
+        //console.log(data);
+        var dataArr = data.split(",");
+        console.log(dataArr);
+
+        prompt();
+    });
 }
 
 prompt();
